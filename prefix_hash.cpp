@@ -21,7 +21,7 @@ struct prefix_hash{
 	prefix_hash(T arr, int n):n(n),a_inv(n),psum(n+1){
 		a_inv[0]=1;
 		a_inv[1]=modinv(a,mod);
-		for(ll i=2; i<n; ++i){
+		for(int i=2; i<n; ++i){
 			a_inv[i]=(a_inv[1]*a_inv[i-1])%mod;
 		}
 		psum[n]=0;
