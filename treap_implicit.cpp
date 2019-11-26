@@ -125,13 +125,13 @@ struct treap{
 
 const int MN = 1003;
 
-treap<int>::node data[MN];
-treap<int>::node * data_it;
+treap<int>::node nodi[MN];
+treap<int>::node * nodi_it;
 
 int main(){
 	rng.seed(chrono::steady_clock::now().time_since_epoch().count());
-	data_it = data;
-	treap<int> trp(data_it);
+	nodi_it = nodi;
+	treap<int> trp(nodi_it);
 	treap<int>::node * root = 0;
 	while(1){
 		char c;
@@ -155,8 +155,8 @@ int main(){
 		} else if(c=='t'){
 			int i;
 			cin>>i;
-			cout<<"V: "<<data[i].v<<endl;
-			auto t = trp.getposroot(&data[i]);
+			cout<<"V: "<<nodi[i].v<<endl;
+			auto t = trp.getposroot(&nodi[i]);
 			cout<<"res: "<<t.first<<' '<<t.second<<endl;
 			cout<<"find: "<<trp.find(t.second,t.first)<<endl;
 		} else if(c=='!'){
