@@ -51,6 +51,34 @@ template<const size_t N> struct Bitarr {
 		ans^=o;
 		return ans;
 	}
+	void operator<<=(size_t X) {
+		size_t x = X%64;
+		X/=64;
+		for(int i=N-1; i>int(X); --i) {
+			data[i]=(data[i-X]<<x)|(data[i-X-1]>>(64-x));
+		}
+		data[X] = data[0]<<x;
+		for(size_t i=0; i<X; ++i) data[i]=0;
+	}
+	Bitarr<N> operator<<(const size_t X) const {
+		Bitarr<N> ans(*this);
+		ans<<=X;
+		return ans;
+	}
+	void operator>>=(size_t X) {
+		const size_t x = X%64;
+		X/=64;
+		for(size_t i=0; i<N-1-X; ++i) {
+			data[i]=(data[i+X]>>x)|(data[i+X+1]<<(64-x));
+		}
+		data[N-1-X] = data[N-1]>>x;
+		for(size_t i=N-X; i<N; ++i) data[i]=0;
+	}
+	Bitarr<N> operator>>(const size_t X) const {
+		Bitarr<N> ans(*this);
+		ans>>=X;
+		return ans;
+	}
 	void flipall() {
 		for(size_t i=0; i<N; ++i) data[i]=~data[i];
 	}
